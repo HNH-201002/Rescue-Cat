@@ -6,6 +6,7 @@ using UnityEngine.AI;
 using Watermelon.LevelSystem;
 using Watermelon.Upgrades;
 using Watermelon.Store;
+using System;
 
 namespace Watermelon
 {
@@ -127,6 +128,8 @@ namespace Watermelon
         private float cameraResetTime;
 
         private int amountOfAnimalCanCarry = 2;
+
+        public event Action<int> RescueCompleted;
 
         public void Initialise()
         {
@@ -444,7 +447,7 @@ namespace Watermelon
             {
                 for (int i = carryingAnimalsAmount - 1; i >= 0; i--)
                 {
-                    Vector3 dropPosition = transform.position + (Random.insideUnitSphere.SetY(0) * 5);
+                    Vector3 dropPosition = transform.position + (UnityEngine.Random.insideUnitSphere.SetY(0) * 5);
 
                     AnimalBehaviour storedAnimalBehaviour = carryingAnimalsList[i].AnimalBehaviour;
                     storedAnimalBehaviour.transform.SetParent(null);
@@ -498,7 +501,7 @@ namespace Watermelon
 
             if (carryingAnimalsAmount < amountOfAnimalCanCarry)
             {
-                    animalBehaviour.transform.DOBezierFollow(storageObject.transform, Random.Range(3, 5), 0, 0.5f).SetEasing(Ease.Type.SineIn).OnComplete(delegate
+                    animalBehaviour.transform.DOBezierFollow(storageObject.transform, UnityEngine.Random.Range(3, 5), 0, 0.5f).SetEasing(Ease.Type.SineIn).OnComplete(delegate
                 {
                     animalBehaviour.transform.localPosition = storageObject.transform.position;
                     animalBehaviour.transform.localRotation = storageObject.transform.rotation;
@@ -509,6 +512,9 @@ namespace Watermelon
             carryingAnimal = animalBehaviour;
 
             carryingAnimalsAmount++;
+
+            RescueCompleted?.Invoke(carryingAnimalsAmount);
+
             carryingAnimalsList.Add(storageCase);
 
             carryingAnimalsHeight += animalBehaviour.GetCarryingHeight();

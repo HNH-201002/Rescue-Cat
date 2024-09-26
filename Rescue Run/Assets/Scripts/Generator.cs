@@ -133,6 +133,11 @@ public class Generator : MonoBehaviour
 
         return true;
     }
+
+    public int GetAmountOfCatToRescue()
+    {
+        return catSpawnData.Quantity;
+    }
 }
 
 [System.Serializable]

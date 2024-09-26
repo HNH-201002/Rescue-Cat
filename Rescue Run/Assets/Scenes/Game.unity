@@ -229,6 +229,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 279814256679603951, guid: 5b68e13b1938c9447bcc4e46be9a30eb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151892151997952365, guid: 5b68e13b1938c9447bcc4e46be9a30eb,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1151892151997952365, guid: 5b68e13b1938c9447bcc4e46be9a30eb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -238,6 +248,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Currency Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067663911772676899, guid: 5b68e13b1938c9447bcc4e46be9a30eb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754613515079076215, guid: 5b68e13b1938c9447bcc4e46be9a30eb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754613515079076215, guid: 5b68e13b1938c9447bcc4e46be9a30eb,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1045,8 +1070,8 @@ Camera:
   m_GameObject: {fileID: 1080318931}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
-  m_BackGroundColor: {r: 0.5613208, g: 0.8431139, b: 1, a: 1}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.33746523, g: 0.9045184, b: 0.97735846, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1205,7 +1230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1271154142
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1380,7 +1405,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 1
-    FarClipPlane: 400
+    FarClipPlane: 500
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -1838,7 +1863,7 @@ PrefabInstance:
     - target: {fileID: 4220367465153731948, guid: 6ab7b2ae81cc462429d971366cb819ef,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000030517578
+      value: 0.000091552734
       objectReference: {fileID: 0}
     - target: {fileID: 5029019629099302171, guid: 6ab7b2ae81cc462429d971366cb819ef,
         type: 3}
@@ -4250,7 +4275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4940122988235903779
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4479,7 +4504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &4940122988608685788
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -114,4 +114,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleName: Control Manager
   selectAutomatically: 0
-  inputType: 0
+  inputType: 1

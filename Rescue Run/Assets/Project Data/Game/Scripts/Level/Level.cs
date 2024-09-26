@@ -9,6 +9,9 @@ namespace Watermelon
 
         [SerializeField] LevelTutorialBehaviour levelTutorialBehaviour;
 
+        [SerializeField]
+        private PlayerProgress playerProgress;
+
         [SerializeField] Zone[] zones;
         public Zone[] Zones => zones;
 
@@ -45,6 +48,9 @@ namespace Watermelon
             {
                 zones[i].Initialise(playerBehavior);
             }
+
+            if(playerProgress != null)
+                playerProgress.Initialise(playerBehavior);
 
             //if (levelTutorialBehaviour != null)
             //    levelTutorialBehaviour.Initialise(this);
