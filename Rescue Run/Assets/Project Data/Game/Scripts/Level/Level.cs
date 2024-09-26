@@ -50,10 +50,16 @@ namespace Watermelon
             }
 
             if(playerProgress != null)
-                playerProgress.Initialise(playerBehavior);
+                playerProgress.InitialisePlayer(playerBehavior);
 
             //if (levelTutorialBehaviour != null)
             //    levelTutorialBehaviour.Initialise(this);
+        }
+
+        public void InitialiseScenePersistenceManager(ScenePersistenceManager scenePersistenceManager)
+        {
+            if (playerProgress != null)
+                playerProgress.InitialiseScenePersistenceManager(scenePersistenceManager);
         }
 
         public void OnGameLoaded()

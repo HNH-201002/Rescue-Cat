@@ -925,6 +925,11 @@ namespace Watermelon
             transform.rotation = destination.rotation;
         }
 
+        public void EnableFullMovementAnimation()
+        {
+            playerGraphics.Animator.SetBool(RUN_HASH, true);
+        }
+
         public void PlayMoneyPickUpParticle()
         {
             moneyPickUpParticleSystem.Stop();

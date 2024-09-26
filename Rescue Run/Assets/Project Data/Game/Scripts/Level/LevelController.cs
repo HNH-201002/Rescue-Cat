@@ -45,6 +45,8 @@ namespace Watermelon
         // Player
         private static PlayerBehavior playerBehavior;
 
+        private static ScenePersistenceManager scenePersistenceManager;
+
         // Animals
         private static Pool visitorPool;
         private static Animal[] animals;
@@ -252,6 +254,10 @@ namespace Watermelon
 
             // Initialise player on level
             currentLevel.InitialisePlayer(playerBehavior);
+
+            scenePersistenceManager = FindObjectOfType<ScenePersistenceManager>();
+
+            currentLevel.InitialiseScenePersistenceManager(scenePersistenceManager);
 
             // Recalculate nurses speed
             currentLevel.RecalculateNurses();
