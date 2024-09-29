@@ -68,3 +68,4 @@ MonoBehaviour:
     cost: 1
   TabTypes: 00000000
   coinsForAdsAmount: 100
+  currencyForAds: 0

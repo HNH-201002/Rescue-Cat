@@ -22,7 +22,7 @@ namespace Watermelon
                     GameController.Unload(() =>
                     {
                         // Load next level
-                        LevelController.ActivateLevel(levelIndex);
+                        LevelController.ActivateLevel(levelIndex,0);
 
                         // Disable fullscreen black overlay
                         gameUI.HideFadePanel(() =>

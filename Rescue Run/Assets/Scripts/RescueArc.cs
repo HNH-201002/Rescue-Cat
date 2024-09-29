@@ -13,9 +13,6 @@ public class ArcRenderer : MonoBehaviour
     private int segments = 50;
 
     [SerializeField]
-    private Color arcColor = Color.red;
-
-    [SerializeField]
     private float detectionRange = 10f;
 
     private Mesh mesh;
@@ -31,6 +28,9 @@ public class ArcRenderer : MonoBehaviour
 
     private bool isPlayerInRange = false;
 
+    [SerializeField]
+    private Material material;
+
     private void Start()
     {
         mesh = new Mesh();
@@ -38,8 +38,6 @@ public class ArcRenderer : MonoBehaviour
 
         meshRenderer = GetComponent<MeshRenderer>();
 
-        Material material = new Material(Shader.Find("Unlit/Color"));
-        material.color = arcColor;
         meshRenderer.material = material;
 
         meshCollider = GetComponent<MeshCollider>();

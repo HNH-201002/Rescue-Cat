@@ -50,6 +50,9 @@ namespace Watermelon
 
         public static void Unload()
         {
+            if (floatingTextController == null)
+                return;
+
             FloatingTextCase[] floatingTextCases = floatingTextController.floatingTextCases;
             for(int i = 0; i < floatingTextCases.Length; i++)
             {

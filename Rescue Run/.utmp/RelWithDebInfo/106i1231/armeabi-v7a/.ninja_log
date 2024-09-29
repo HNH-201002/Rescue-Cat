@@ -1,0 +1,9 @@
+# ninja log v5
+56	1723	7493189925216465	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	ef917b675b6409ba
+11	1743	7493189925181024	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	1a93b3e1684b9b7d
+44	1852	7493189926654098	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	7fbf27b8896e8592
+70	1992	7493189928038471	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	bb0177704f1964a9
+1	2059	7493189928758504	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	6868e38f6b838945
+32	2403	7493189932085464	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	95a7288498b17ab9
+21	2537	7493189933418815	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	1682f5e0de52ffa7
+2540	3109	7493189937883104	C:/Users/Admin/Downloads/my saved project/Rescue-Cat/Rescue Run/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/106i1231/obj/armeabi-v7a/libgame.so	afe97af2760566e8

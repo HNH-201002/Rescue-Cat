@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initModules:
   - {fileID: 5321261888481077867}
-  - {fileID: -2744239200444536980}
   - {fileID: 1541307628909891008}
+  - {fileID: -2744239200444536980}
   - {fileID: -5100660693332512767}
   - {fileID: 4843368711887817407}
   - {fileID: 779070871751298899}

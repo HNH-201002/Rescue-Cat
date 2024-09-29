@@ -205,11 +205,17 @@ namespace Watermelon
         {
             MovementSpeedUpgrade.MovementSpeedStage speedStage = movementSpeedUpgrade.GetCurrentStage();
 
-            maxSpeed = speedStage.PlayerMovementSpeed;
+            //maxSpeed = speedStage.PlayerMovementSpeed;
             acceleration = speedStage.PlayerAcceleration;
 
-            agent.speed = maxSpeed;
+            //agent.speed = maxSpeed;
             agent.acceleration = acceleration;
+        }
+
+        public void SetMaxSeed(float speed)
+        {
+            maxSpeed = speed;
+            agent.speed = speed;
         }
 
         private void RecalculateStrength()

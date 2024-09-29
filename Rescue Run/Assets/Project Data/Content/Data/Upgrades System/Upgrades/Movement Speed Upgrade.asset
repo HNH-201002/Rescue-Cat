@@ -15,24 +15,30 @@ MonoBehaviour:
   upgradeType: 0
   title: Doctor Speed
   icon: {fileID: 21300000, guid: 5a76020f4b4a9094eba9191e4d63135c, type: 3}
+  disabledIcon: {fileID: 0}
   upgrades:
   - price: 0
     currencyType: 0
-    playerMovementSpeed: 11
+    previewSprite: {fileID: 0}
+    playerMovementSpeed: 20
     playerAcceleration: 40
   - price: 30
     currencyType: 0
+    previewSprite: {fileID: 0}
     playerMovementSpeed: 11.2
     playerAcceleration: 40
   - price: 250
     currencyType: 0
+    previewSprite: {fileID: 0}
     playerMovementSpeed: 11.4
     playerAcceleration: 40
   - price: 450
     currencyType: 0
+    previewSprite: {fileID: 0}
     playerMovementSpeed: 11.6
     playerAcceleration: 40
   - price: 1000
     currencyType: 0
+    previewSprite: {fileID: 0}
     playerMovementSpeed: 12
     playerAcceleration: 40

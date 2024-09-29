@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: Assets/Project Data/Game/Scenes/Init.unity
     guid: cc0b80ce7479f924fa29c695693d8ae8
   - enabled: 1
-    path: Assets/Project Data/Game/Scenes/Game.unity
-    guid: 361eea68332b709408fe8391773229a1
+    path: Assets/Scenes/Game.unity
+    guid: 1770822f6973fcd43bddd86d1f2de589
   - enabled: 1
-    path: Assets/Project Data/Game/Scenes/Levels/Main Level.unity
-    guid: 4e5cfb307d79c2a48a1c74a41064d0f3
+    path: Assets/Scenes/Menu.unity
+    guid: 48eb2c5bcd5703d48a158eae134f0230
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/InGame.unity
     guid: 7b59c72b4f3228b46820f2689be6cea4
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

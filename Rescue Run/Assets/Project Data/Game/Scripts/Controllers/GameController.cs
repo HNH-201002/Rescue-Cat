@@ -33,6 +33,7 @@ namespace Watermelon
         private void Start()
         {
             InitialiseGame();
+            GameLoading.MarkAsReadyToHide();
         }
 
         public void InitialiseGame()

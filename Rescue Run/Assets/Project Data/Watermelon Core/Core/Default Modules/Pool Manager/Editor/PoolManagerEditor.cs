@@ -75,6 +75,9 @@ namespace Watermelon
 
             boldStyle.fontStyle = FontStyle.Bold;
 
+            if (EditorStylesExtended.editorSkin == null)
+                return;
+
             headerStyle = new GUIStyle(EditorStylesExtended.editorSkin.label);
             headerStyle.normal.textColor = labelColor;
             headerStyle.alignment = TextAnchor.MiddleCenter;

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Watermelon.LevelSystem;
 using Watermelon.Upgrades;
+using static Cinemachine.DocumentationSortingAttribute;
 
 namespace Watermelon
 {
@@ -36,11 +38,17 @@ namespace Watermelon
         [Header("Nurse")]
         [SerializeField] GameObject nursePrefabObject;
 
+        [SerializeField]
+        private SwitchCamera switchCamera;
+
         private static Level currentLevel;
         public static Level CurrentLevel => currentLevel;
 
         private static int currentLevelID;
         public static int CurrentLevelID => currentLevelID;
+
+        private static int atualCurrentLevelID;
+        public static int AtualCurrentLevelID => atualCurrentLevelID;
 
         // Player
         private static PlayerBehavior playerBehavior;
@@ -97,6 +105,8 @@ namespace Watermelon
         private static LevelSave levelSaveData;
         private static GlobalLevelSave globalLevelSaveData;
         private static int loadedLevelIndex;
+
+        private static float speed = 1;
 
         public void Initialise()
         {
@@ -158,8 +168,7 @@ namespace Watermelon
 
             globalLevelSaveData = SaveController.GetSaveObject<GlobalLevelSave>("globalLevelSave");
 
-            // Load level with save
-            LoadLevel(globalLevelSaveData.CurrentLevelID);
+            SceneManager.LoadScene(levelsDatabase.GetLevelByIndex(0).LevelName, LoadSceneMode.Additive);
         }
 
         private void RecalculatePickUpSpeed()
@@ -215,18 +224,28 @@ namespace Watermelon
 
             NavMeshController.Reset();
 
-            playerBehavior.Unload();
-            currentLevel.Unload();
+            if (playerBehavior != null)
+            {
+                playerBehavior.Unload();
+            }
+
+            if (currentLevel != null)
+            {
+                currentLevel.Unload();
+            }
 
             SceneManager.UnloadSceneAsync(levelsDatabase.GetLevelByIndex(loadedLevelIndex).LevelName, UnloadSceneOptions.None).OnCompleted(onSceneUnloaded);
         }
 
-        public static void ActivateLevel(int index)
+        public static void ActivateLevel(int index, int actualLevel)
         {
+            atualCurrentLevelID = actualLevel;
+
             globalLevelSaveData.CurrentLevelID = index;
 
             levelController.LoadLevel(index);
         }
+
 
         private void LoadLevel(int levelID)
         {
@@ -237,6 +256,9 @@ namespace Watermelon
             NavMeshController.Initialise(levelController.navMeshSurface);
 
             SceneManager.LoadScene(levelsDatabase.GetLevelByIndex(levelID).LevelName, LoadSceneMode.Additive);
+
+            Time.timeScale = 1;
+            switchCamera.SwitchToMainCamera();
         }
 
         public static void OnLevelCreated(Level level)
@@ -251,6 +273,7 @@ namespace Watermelon
 
             playerBehavior = playerObject.GetComponent<PlayerBehavior>();
             playerBehavior.Initialise();
+            playerBehavior.SetMaxSeed(speed);
 
             // Initialise player on level
             currentLevel.InitialisePlayer(playerBehavior);
@@ -272,6 +295,11 @@ namespace Watermelon
                 // Invoke level loaded callback
                 OnLevelLoaded?.Invoke(currentLevel);
             });
+        }
+
+        public static void SetSpeed(float newspeed)
+        {
+            speed = newspeed;
         }
 
         public void OnGameLoaded()

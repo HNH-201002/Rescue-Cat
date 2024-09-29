@@ -8,32 +8,44 @@ using System;
 public class PlayerProgress : MonoBehaviour
 {
     [SerializeField]
-    private Generator generator;
+    private GenerationManager generationManager;
+
+    [SerializeField]
+    private ObjectRescueSAO objectRescueData;
 
     [SerializeField]
     private Transform startPoint;
 
     [SerializeField]
-    private Transform endPoint;
+    private Transform endPointStartPhase;
+
+    [SerializeField]
+    private Transform endPointEndPhase;
 
     [SerializeField]
     private Slider progressSlider;
+
+    [SerializeField]
+    private ObstacleGeneration obstacleGeneration;
 
     private float totalDistance;
 
     private PlayerBehavior player;
 
-    private int amountOfCatToRescue = 0;
+    private int amountOfCatToRescue = 5;
 
     private ScenePersistenceManager scenePersistence;
 
-    private bool moveToEndpoint = false; 
-    public float speed = 5f; 
+    public bool MoveToEndpoint { get; set; } = false; 
+
+    public float speed = 200;
+
+    private int currentRescueCount = 0;
 
     private void Start()
     {
-        amountOfCatToRescue = generator.GetAmountOfCatToRescue();
-        totalDistance = Vector3.Distance(startPoint.position, endPoint.position);
+        amountOfCatToRescue = generationManager.GetAmountOfCatToRescue();
+        totalDistance = Vector3.Distance(startPoint.position, endPointStartPhase.position);
         progressSlider.minValue = 0;
         progressSlider.maxValue = 1;
     }
@@ -49,7 +61,7 @@ public class PlayerProgress : MonoBehaviour
 
         UpdateProgress(progress);
 
-        if (moveToEndpoint)
+        if (MoveToEndpoint)
         {
             MovePlayerToEndPoint();
         }
@@ -73,12 +85,9 @@ public class PlayerProgress : MonoBehaviour
 
     private void OnRescueCompleted(int count)
     {
+        currentRescueCount = count;
         if (count == amountOfCatToRescue)
         {
-            if (scenePersistence == null)
-                return;
-
-            scenePersistence.SwitchCamera.SwitchToStartCamera();
             HandleEndPhase();
         }
     }
@@ -91,20 +100,41 @@ public class PlayerProgress : MonoBehaviour
         }
     }
 
-    private void HandleEndPhase()
+    public void HandleEndPhase()
     {
+        obstacleGeneration.DeactivateAllObstacles();
         player.EnableFullMovementAnimation();
-        moveToEndpoint = true;
+        MoveToEndpoint = true;
+        scenePersistence.SwitchCamera.SwitchToStartCamera();
     }
 
     private void MovePlayerToEndPoint()
     {
-        player.transform.position = Vector3.MoveTowards(player.transform.position, endPoint.position, speed * Time.deltaTime);
-        player.transform.LookAt(endPoint.position);
+        Vector3 targetPosition = endPointEndPhase.position;
+        player.transform.position = Vector3.MoveTowards(player.transform.position, targetPosition, speed * Time.deltaTime);
 
-        if (player.transform.position == endPoint.position)
+        Vector3 direction = (targetPosition - player.transform.position).normalized;
+
+        if (direction != Vector3.zero)
         {
-            moveToEndpoint = false; 
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            player.transform.rotation = lookRotation;
         }
+
+        if (Vector3.Distance(player.transform.position, targetPosition) < 0.1f)
+        {
+            player.transform.position = targetPosition;
+            MoveToEndpoint = false;
+        }
+    }
+
+    public int GetMaxAmountOfRescueObjects()
+    {
+        return objectRescueData.Quantity;
+    }
+
+    public int GetCurrentAmountOfRescueObjects()
+    {
+        return currentRescueCount;
     }
 }

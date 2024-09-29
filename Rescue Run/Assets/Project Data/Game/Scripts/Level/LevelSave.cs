@@ -33,12 +33,13 @@ namespace Watermelon
 
         public void Flush()
         {
-            // Get save data from all zones
-            ZoneSaves = new ZoneSave[activeZones.Length];
-            for (int i = 0; i < activeZones.Length; i++)
-            {
-                ZoneSaves[i] = activeZones[i].Save();
-            }
+            //if (ZoneSaves == null)
+            //    return;
+            //ZoneSaves = new ZoneSave[activeZones.Length];
+            //for (int i = 0; i < activeZones.Length; i++)
+            //{
+            //    ZoneSaves[i] = activeZones[i].Save();
+            //}
         }
     }
 }

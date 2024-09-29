@@ -11,19 +11,19 @@ public class SwitchCamera : MonoBehaviour
     private CinemachineVirtualCamera mainCamera;
 
     [SerializeField]
-    private GameObject joystick;
+    private Joystick joystick;
 
     public void SwitchToStartCamera() 
     {
         startCamera.enabled = true;
         mainCamera.enabled = false;
-        joystick.SetActive(false);
+        joystick.DisableControl();
     }
 
     public void SwitchToMainCamera()
     {
         startCamera.enabled = false;
         mainCamera.enabled = true;
-        joystick.SetActive(true);
+        joystick.EnableControl();
     }
 }

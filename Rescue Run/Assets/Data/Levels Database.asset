@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - id: 0
-    levelName: MainScene
+    levelName: Menu
+  - id: 1
+    levelName: InGame

@@ -35,7 +35,6 @@ namespace Watermelon
         public void Initialise(Currency currency)
         {
             this.currency = currency;
-
             canvasGroup.alpha = 0.0f;
             layoutElement.preferredHeight = CurrencyUIHelper.PANEL_HEIGHT;
 

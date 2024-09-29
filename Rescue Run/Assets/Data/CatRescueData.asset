@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4eeb918ae0eb34d885745c6df20b5b, type: 3}
+  m_Name: CatRescueData
+  m_EditorClassIdentifier: 
+  quantity: 5
+  prefabs:
+  - {fileID: 3723217540529644781, guid: f189ed0d00cbd494e9c7ddb2adf40746, type: 3}
+  - {fileID: 4940788795420556183, guid: a7f5f3d0368b3f84c8854fc9f09f48c6, type: 3}
+  - {fileID: 6824056633908700397, guid: e1e2bfd57f1707645ba5065336a429a6, type: 3}
+  - {fileID: 7329176190649520718, guid: 2499abf9b50c954419c4c124aa72a495, type: 3}
+  - {fileID: 2921632596715241418, guid: af4ee10a2459b814f8dbb380928df496, type: 3}

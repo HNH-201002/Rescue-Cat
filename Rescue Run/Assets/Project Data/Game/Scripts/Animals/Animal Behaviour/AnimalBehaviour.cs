@@ -2,6 +2,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 using Watermelon.Outline;
+using UnityEngine.UI;
 
 namespace Watermelon
 {
@@ -77,10 +78,14 @@ namespace Watermelon
         private float followDistance = 2f;
         private float followSpeed = 5f;
 
+        [SerializeField]
+        private Image alertIcon;
+
         private void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             navMeshAgent.enabled = false;
+            alertIcon.enabled = true;
         }
 
         public void Initialise(Animal animal, Zone zone, AnimalSpawner animalSpawner)
@@ -203,6 +208,8 @@ namespace Watermelon
         {
             if (isPicked)
                 return;
+
+            alertIcon.enabled = false;
 
             if (carrying != null)
             {

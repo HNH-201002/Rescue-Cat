@@ -12,6 +12,7 @@ namespace Watermelon
         public const string TAG_VISITOR = "Visitor";
         public const string TAG_ANIMAL = "Animal";
         public const string TAG_COLLECTED = "Collected";
+        public const string TAG_CHARACTER = "Character";
 
         public static void Init()
         {

@@ -395,12 +395,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 29a98bca25aba6b42a6cb0d55785468f, type: 2}
   m_BuildHeightMesh: 0
---- !u!1 &214233101 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8170153791668043269, guid: 0d230cc8be529a542a08cb878ab14b18,
-    type: 3}
-  m_PrefabInstance: {fileID: 1651848952}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &303162640
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +795,7 @@ MonoBehaviour:
     type: 3}
   nursePrefabObject: {fileID: 2435184747624022596, guid: 6da1ff7e7b2d4a6469e9a196293fcdde,
     type: 3}
+  switchCamera: {fileID: 1382624978}
 --- !u!114 &1060784200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,7 +1089,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.33746523, g: 0.9045184, b: 0.97735846, a: 1}
+  m_BackGroundColor: {r: 1, g: 0.9372549, b: 0.7372549, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1492,7 +1487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startCamera: {fileID: 2056230639}
   mainCamera: {fileID: 1321106420}
-  joystick: {fileID: 214233101}
+  joystick: {fileID: 1651848954}
 --- !u!1 &1564392283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,7 +1684,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1651848952}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214233101}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9fca4100a7477741b3973b4ff2c405f, type: 3}
@@ -1912,7 +1907,7 @@ PrefabInstance:
     - target: {fileID: 4220367465153731948, guid: 6ab7b2ae81cc462429d971366cb819ef,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00012207031
+      value: 0.000091552734
       objectReference: {fileID: 0}
     - target: {fileID: 5029019629099302171, guid: 6ab7b2ae81cc462429d971366cb819ef,
         type: 3}
@@ -5099,7 +5094,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 0.9386792, b: 0.9386792, a: 1}
-  m_Intensity: 1.1
+  m_Intensity: 1.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
