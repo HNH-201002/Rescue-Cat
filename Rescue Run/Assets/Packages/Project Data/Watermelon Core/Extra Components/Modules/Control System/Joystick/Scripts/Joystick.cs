@@ -89,7 +89,7 @@ namespace Watermelon
 
             isActive = false;
 
-            if(useTutorial)
+            if (useTutorial)
             {
                 joystickAnimator.enabled = true;
                 isTutorialDisplayed = true;

@@ -212,7 +212,7 @@ namespace Watermelon
             visitorPool.ReturnToPoolEverything(true);
             nursePool.ReturnToPoolEverything(true);
 
-            for(int i = 0; i < sicknesses.Length; i++)
+            for (int i = 0; i < sicknesses.Length; i++)
             {
                 sicknesses[i].Unload();
             }

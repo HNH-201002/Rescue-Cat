@@ -118,8 +118,8 @@ namespace Watermelon
 
         // Upgrades
         private MovementSpeedUpgrade movementSpeedUpgrade;
-        private CharacterStrengthUpgrade characterStrengthUpgrade;   
-        
+        private CharacterStrengthUpgrade characterStrengthUpgrade;
+
         // Camera
         private Transform cameraTarget;
         public Transform CameraTarget => cameraTarget;
@@ -218,6 +218,12 @@ namespace Watermelon
             agent.speed = speed;
         }
 
+        public void SpeedUpMaxSpeed(float speed)
+        {
+            maxSpeed += speed;
+            agent.speed += speed;
+        }
+
         private void RecalculateStrength()
         {
             CharacterStrengthUpgrade.CharacterStrengthUpgradeStage strengthUpgradeStage = characterStrengthUpgrade.GetCurrentStage();
@@ -247,14 +253,14 @@ namespace Watermelon
         public void SetGraphics(GameObject graphics)
         {
             // Check if graphics isn't exist already
-            if(playerPrefabGraphics != graphics)
+            if (playerPrefabGraphics != graphics)
             {
                 // Store prefab link
                 playerPrefabGraphics = graphics;
 
-                if(playerGraphics != null)
+                if (playerGraphics != null)
                 {
-                    for(int i = 0; i < carryingAnimalsAmount; i++)
+                    for (int i = 0; i < carryingAnimalsAmount; i++)
                     {
                         carryingAnimalsList[i].StorageObject.transform.SetParent(null);
                     }
@@ -289,7 +295,7 @@ namespace Watermelon
                 // Get storage transform
                 storageTransform = playerGraphics.StorageTransform;
 
-                if(carryingAnimalsAmount > 0)
+                if (carryingAnimalsAmount > 0)
                 {
                     for (int i = 0; i < carryingAnimalsAmount; i++)
                     {
@@ -303,7 +309,7 @@ namespace Watermelon
                     RegroupAnimals();
                 }
 
-                if(carryingItemsAmount > 0)
+                if (carryingItemsAmount > 0)
                 {
                     for (int i = 0; i < carryingItemsAmount; i++)
                     {
@@ -472,7 +478,7 @@ namespace Watermelon
             carryingAnimalsHeight = 0;
             isAnimalCarrying = false;
 
-            if(disableHands)
+            if (disableHands)
             {
                 // Disable hold animation
                 DisableHands(0.3f);
@@ -494,7 +500,7 @@ namespace Watermelon
                 storageObject.transform.SetParent(storageTransform);
                 storageObject.transform.localPosition = new Vector3(0, carryingAnimalsHeight, 0);
             }
-  
+
             storageObject.transform.localRotation = Quaternion.identity;
             storageObject.transform.localScale = Vector3.one;
             storageObject.SetActive(true);
@@ -507,11 +513,11 @@ namespace Watermelon
 
             if (carryingAnimalsAmount < amountOfAnimalCanCarry)
             {
-                    animalBehaviour.transform.DOBezierFollow(storageObject.transform, UnityEngine.Random.Range(3, 5), 0, 0.5f).SetEasing(Ease.Type.SineIn).OnComplete(delegate
-                {
-                    animalBehaviour.transform.localPosition = storageObject.transform.position;
-                    animalBehaviour.transform.localRotation = storageObject.transform.rotation;
-                });
+                animalBehaviour.transform.DOBezierFollow(storageObject.transform, UnityEngine.Random.Range(3, 5), 0, 0.5f).SetEasing(Ease.Type.SineIn).OnComplete(delegate
+            {
+                animalBehaviour.transform.localPosition = storageObject.transform.position;
+                animalBehaviour.transform.localRotation = storageObject.transform.rotation;
+            });
             }
             storageCase.MarkAsPicked();
 
@@ -537,7 +543,7 @@ namespace Watermelon
 
         private void RegroupAnimals()
         {
-            carryingAnimalsHeight = 0; 
+            carryingAnimalsHeight = 0;
 
             if (carryingAnimalsAmount > 0)
             {
@@ -558,7 +564,7 @@ namespace Watermelon
         public ItemStorageCase AddItem(Item.Type itemType)
         {
             Item item = ItemController.GetItem(itemType);
-            if(item != null)
+            if (item != null)
             {
                 if (isAnimalCarrying)
                     DropAnimals(false);
@@ -634,7 +640,7 @@ namespace Watermelon
                         carryingItemsAmount--;
                         carryingItemsList.RemoveAt(i);
 
-                        if(carryingItemsAmount == 0)
+                        if (carryingItemsAmount == 0)
                         {
                             carryingItemsHeight = 0;
                             isItemsCarrying = false;
@@ -713,7 +719,7 @@ namespace Watermelon
         #region Purchase
         public void SetPurchaseObject(IPurchaseObject purchaseObject)
         {
-            if(activePurchaseObject != null)
+            if (activePurchaseObject != null)
                 StopCoroutine(purchaseCoroutine);
 
             activePurchaseObject = purchaseObject;
@@ -736,8 +742,8 @@ namespace Watermelon
             {
                 yield return waitForSeconds;
 
-                int allowedAmount = stepSize; 
-                int placeDifference = activePurchaseObject.PriceAmount - activePurchaseObject.PlacedCurrencyAmount; 
+                int allowedAmount = stepSize;
+                int placeDifference = activePurchaseObject.PriceAmount - activePurchaseObject.PlacedCurrencyAmount;
                 int currentAmount = CurrenciesController.Get(activePurchaseObject.PriceCurrencyType);
 
                 if (placeDifference < allowedAmount)
@@ -746,14 +752,14 @@ namespace Watermelon
                 if (currentAmount < allowedAmount)
                     allowedAmount = currentAmount;
 
-                if(allowedAmount != 0 && currentAmount >= allowedAmount)
+                if (allowedAmount != 0 && currentAmount >= allowedAmount)
                 {
-                    if(!isPurchaseParticleActive)
+                    if (!isPurchaseParticleActive)
                     {
                         CurrencyType tempCurrencyType = activePurchaseObject.PriceCurrencyType;
                         if (moneyParticleSystem == null || moneyParticleType != tempCurrencyType)
                         {
-                            if(moneyParticleSystem != null)
+                            if (moneyParticleSystem != null)
                                 Destroy(moneyParticleSystem.gameObject);
 
                             Currency currency = CurrenciesController.GetCurrency(tempCurrencyType);
@@ -772,7 +778,7 @@ namespace Watermelon
                         isPurchaseParticleActive = true;
                     }
 
-                    if(Time.time > moneyPlaceSoundTime)
+                    if (Time.time > moneyPlaceSoundTime)
                     {
                         AudioController.PlaySound(AudioController.Sounds.moneyPlaceSound);
 
@@ -805,7 +811,7 @@ namespace Watermelon
 
         public void ResetPurchaseObject(IPurchaseObject purchaseObject)
         {
-            if(activePurchaseObject == purchaseObject)
+            if (activePurchaseObject == purchaseObject)
             {
                 // Destroy money particle
                 if (moneyParticleSystem != null)
@@ -861,8 +867,8 @@ namespace Watermelon
                 transform.position += control.FormatInput * Time.deltaTime * speed;
                 playerGraphics.Animator.SetFloat(MOVEMENT_MULTIPLIER_HASH, speed / maxSpeed);
 
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(control.FormatInput.normalized), 0.2f); 
-                
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(control.FormatInput.normalized), 0.2f);
+
                 // Camera offset
                 cameraCurrentOffset = new Vector3(Mathf.Clamp(cameraCurrentOffset.x + (control.FormatInput.normalized.x * cameraOffsetSpeed * Time.deltaTime * Mathf.Abs(control.FormatInput.normalized.x * cameraOffset - cameraCurrentOffset.x)), -cameraOffset, cameraOffset), 0, Mathf.Clamp(cameraCurrentOffset.z + (control.FormatInput.normalized.z * cameraOffsetSpeed * Time.deltaTime * Mathf.Abs(control.FormatInput.normalized.z * cameraOffset - cameraCurrentOffset.z)), -cameraOffset, cameraOffset));
 
@@ -884,11 +890,11 @@ namespace Watermelon
             }
 
             // Recalculate carrying animals position
-            if(isAnimalCarrying)
+            if (isAnimalCarrying)
             {
-                for(int i = 0; i < carryingAnimalsAmount; i++)
+                for (int i = 0; i < carryingAnimalsAmount; i++)
                 {
-                    if(carryingAnimalsList[i].IsPicked)
+                    if (carryingAnimalsList[i].IsPicked)
                     {
                         if (i >= amountOfAnimalCanCarry)
                         {
@@ -901,7 +907,8 @@ namespace Watermelon
                                 carryingAnimalsList[i].AnimalBehaviour.FollowTarget(carryingAnimalsList[i - 1].AnimalBehaviour.transform, speed / maxSpeed);
                             }
                         }
-                        else{
+                        else
+                        {
                             carryingAnimalsList[i].AnimalBehaviour.transform.position = carryingAnimalsList[i].StorageObject.transform.position;
                             carryingAnimalsList[i].AnimalBehaviour.transform.rotation = carryingAnimalsList[i].StorageObject.transform.rotation;
                         }
@@ -988,6 +995,23 @@ namespace Watermelon
         public void OnNavMeshUpdated()
         {
             agent.enabled = true;
+        }
+
+        public float GetCurrentSpeed()
+        {
+            if (isRunning)
+            {
+                return (int)speed;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public float GetMaxSpeed()
+        {
+            return maxSpeed;
         }
     }
 }

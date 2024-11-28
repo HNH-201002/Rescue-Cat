@@ -5,6 +5,8 @@ namespace Watermelon
 {
     public class Level : MonoBehaviour
     {
+        public event Action<PlayerBehavior> OnLevelCreated;
+
         [SerializeField] Transform spawnPoint;
 
         [SerializeField] LevelTutorialBehaviour levelTutorialBehaviour;
@@ -49,11 +51,10 @@ namespace Watermelon
                 zones[i].Initialise(playerBehavior);
             }
 
-            if(playerProgress != null)
+            if (playerProgress != null)
                 playerProgress.InitialisePlayer(playerBehavior);
 
-            //if (levelTutorialBehaviour != null)
-            //    levelTutorialBehaviour.Initialise(this);
+            OnLevelCreated?.Invoke(playerBehavior);
         }
 
         public void InitialiseScenePersistenceManager(ScenePersistenceManager scenePersistenceManager)

@@ -130,6 +130,7 @@ namespace Watermelon
 
         public static void OnPageOpened(UIPage page)
         {
+            page.EnableCanvas();
             OnPageOpenedEvent?.Invoke(page, page.GetType());
         }
 

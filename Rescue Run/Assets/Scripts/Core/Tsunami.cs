@@ -17,17 +17,26 @@ public class Tsunami : MonoBehaviour
     [SerializeField]
     private float speedEndPhase = 20;
 
+    [SerializeField]
+    private SpeedUp speedUp;
+
     private float speed;
+
+    private bool isCountDownFinished = false;
 
     private void Start()
     {
         collisionStartPhase.PlayerCompletedStartPhase += UpgradeSpeed;
+        speedUp.CountdownFinished += IsCountDownFinished;
         speed = speedStartPhase;
     }
 
     private void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        if (isCountDownFinished)
+        {
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,8 +52,14 @@ public class Tsunami : MonoBehaviour
         speed = speedEndPhase;
     }
 
+    private void IsCountDownFinished(bool isCountDownFinished)
+    {
+        this.isCountDownFinished = isCountDownFinished;
+    }
+
     private void OnDestroy()
     {
         collisionStartPhase.PlayerCompletedStartPhase -= UpgradeSpeed;
+        speedUp.CountdownFinished -= IsCountDownFinished;
     }
 }
